@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'jacoco'
 
 repositories {
     mavenCentral()
@@ -10,5 +11,14 @@ dependencies {
 }
 
 test {
+     jacoco {
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+        classDumpDir = file("$buildDir/jacoco/classpathdumps")
+    }
     outputs.upToDateWhen { false }
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("$buildDir/JacocoReports")
 }
